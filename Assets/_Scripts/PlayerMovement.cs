@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed;
 
     private Rigidbody rb;
+    private Animator _animator;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -46,6 +48,30 @@ public class PlayerMovement : MonoBehaviour
         //UERZAQ DE ROTACION <=> TORQUE
         //transform.Rotate( 0, horizontal * angle, 0); girar la camara con las teclas A,D
         rb.AddRelativeTorque( 0,  mouseX * angle,  0);
+
+        _animator.SetFloat("Velocity", rb.velocity.magnitude); //solo animacion de correr
+       /* Animacion para correr pulsando shift, CORREGIR ANIMACIONES
+        _animator.SetFloat("MoveX", horizontal);
+        _animator.SetFloat("MoveY", vertical);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _animator.SetFloat("Velocity", rb.velocity.magnitude);
+        }
+        else
+        {
+            if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
+            {
+                _animator.SetFloat("Velocity", 0);
+            }
+            else
+            {
+                _animator.SetFloat("Velocity", 0.15f);
+            }
+        }
+
+
+
 
         /*
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))

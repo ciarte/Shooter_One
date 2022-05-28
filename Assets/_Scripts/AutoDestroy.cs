@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AutoDestroy : MonoBehaviour
 {
-    [Tooltip("Tiempo despues del cual se destruye el objeto")]
+    [Tooltip("Tiempo delay, despues del cual se destruye el objeto")]
     public float destructionDelay;
   
     void OnEnable()
